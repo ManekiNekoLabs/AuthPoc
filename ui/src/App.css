@@ -1,0 +1,198 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* SignIn Component Styles */
+.sign-in-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.sign-in-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.submit-button {
+  padding: 0.75rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+/* ValidationCode Component Styles */
+.validation-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.validation-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.submit-button,
+.resend-button {
+  padding: 0.75rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  flex: 1;
+  margin: 0.5rem;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+/* Dashboard Component Styles */
+.dashboard-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem 2rem; /* Add top/bottom 1rem and left/right 2rem padding */
+  text-align: center;
+}
+
+.book-session-container {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.book-session-container h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.book-session-button {
+  background-color: #fff;
+  color: #6c5ce7;
+  border: 2px solid #6c5ce7;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.book-session-button:hover {
+  background-color: #6c5ce7;
+  color: #fff;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .book-session-container {
+    padding: 15px;
+  }
+
+  .book-session-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .book-session-container h3 {
+    font-size: 18px;
+  }
+
+  .book-session-button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+.booking-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-container h2 {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.booking-container iframe {
+  flex-grow: 1;
+  width: 100%;
+  border: none;
+}
