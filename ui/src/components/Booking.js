@@ -1,21 +1,75 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthContext';
+import './Booking.css';
 
 function Booking() {
-  const bookingUrl = 'https://www.engagementrx.com/sensablehealth/app/#!/flow/id/2c2a2dcf-58e2-4d1d-b1aa-3d12117ad2e7/17c1bedc-1938-425c-a56a-000d25f9e8d9/1/1';
-  const coursesUrl = 'https://www.engagementrx.com/sensablehealth/app/#!/page/9d835ce3-34ef-4e8e-ab53-4de76af77b48';
+  const { authToken, idToken } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  return (
-    <div className="booking-container">
-      <h2>Booking Page</h2>
-      <iframe
-        src={coursesUrl}
-        title="Booking Page"
-        width="100%"
-        height="600px"
-        style={{border: 'none'}}
-      />
-    </div>
-  );
+  useEffect(() => {
+    const initiateSSOFlow = async () => {
+      if (!authToken || !idToken) {
+        setError('Missing authentication or ID token');
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        console.log('Initiating SSO with token:', idToken);
+
+        const response = await fetch('http://localhost:8000/initiate-sso', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${idToken}`
+          },
+          credentials: 'include',
+          body: JSON.stringify({ 
+            session: idToken,
+            portal: 'sensablehealth',
+            relayState: 'ContentSection-be859525-1c03-411e-be57-2a20bb114061'
+          })
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to initiate SSO');
+        }
+
+        const data = await response.json();
+        console.log('SSO Response:', data);
+        
+        // Redirect to AWS IAM Identity Center
+        window.location.href = data.redirectUrl;
+
+      } catch (error) {
+        console.error('SSO flow error:', error);
+        setError(`SSO Error: ${error.message}`);
+        setIsLoading(false);
+      }
+    };
+
+    initiateSSOFlow();
+  }, [authToken, idToken]);
+
+  if (isLoading) {
+    return <div className="booking-loading">Initiating SSO...</div>;
+  }
+
+  if (error) {
+    return (
+      <div className="booking-error">
+        <h2>Error</h2>
+        <p>{error}</p>
+        <button onClick={() => navigate('/dashboard')}>Back to Dashboard</button>
+      </div>
+    );
+  }
+
+  return null;
 }
 
 export default Booking;

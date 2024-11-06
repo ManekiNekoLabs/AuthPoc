@@ -6,9 +6,9 @@ import { AuthContext } from '../AuthContext';
 function SignIn() {
   const { setIsAuthenticated, setAuthToken, setUserId, setFirstName } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 

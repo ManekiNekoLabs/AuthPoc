@@ -39,27 +39,6 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
 ### Deployment
 
@@ -68,3 +47,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Environment Setup
+
+1. Create a `.env` file in the backend directory
+2. Copy the contents from `.env.example` (if provided) or set up the following variables:
+   ```
+   PORT=8000
+   NODE_ENV=development
+   SESSION_SECRET=your_secure_secret
+   CORS_ORIGIN=http://localhost:3000
+   USER_API_BASE_URL=https://userapi.qa.sensablehealth.net
+   ENGAGEMENT_RX_SSO_URL=https://www.engagementrx.com/MqmNpFDDsU/sp/saml2/sso
+   AWS_SSO_URL=https://portal.sso.us-east-1.amazonaws.com/saml/assertion/NDAwNzYwOTEzMzMyX2lucy04Yzc4YzlmMmIyZmYyMTBh
+   ```

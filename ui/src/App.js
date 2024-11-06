@@ -31,7 +31,14 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/booking" element={<Booking />} />
+          <Route 
+            path="/booking" 
+            element={
+              <ProtectedRoute requireValidation>
+                <Booking />
+              </ProtectedRoute>
+            } 
+          />
         </Routes>
       </Router>
     </AuthProvider>

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
 
 function ValidationCode() {
-  const { authToken, userId, setIsValidated } = useContext(AuthContext);
+  const { authToken, userId, setIsValidated, setIdToken } = useContext(AuthContext);
   const navigate = useNavigate();
   const [code, setCode] = useState('');
   const [timer, setTimer] = useState(180); // 3 minutes in seconds
@@ -54,6 +54,15 @@ function ValidationCode() {
       }
 
       const data = await response.json();
+      console.log('Validation Response:', data);
+      
+      if (data.idToken) {
+        console.log('Setting idToken:', data.idToken);
+        setIdToken(data.idToken);
+      } else {
+        console.log('No idToken found in response data:', data);
+      }
+      
       setIsValidated(true);
       navigate('/dashboard'); // Redirect to dashboard after successful validation
     } catch (err) {
@@ -68,7 +77,7 @@ function ValidationCode() {
     setLoading(true);
     setError(null);
     // Implement the resend logic, possibly calling an API endpoint
-    const apiUrl = 'https://userapi.sensablehealth.net/user/resend-code'; // Replace with actual endpoint
+    const apiUrl = 'https://userapi.qa.sensablehealth.net/user/resend-code'; // Replace with actual endpoint
 
     try {
       const response = await fetch(apiUrl, {
